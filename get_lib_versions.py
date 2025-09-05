@@ -3,6 +3,7 @@ packages = [
     "langchain",
     "langchain_core",
     "python-dotenv",
+    "streamlit"
 ]
 
 for package in packages:
