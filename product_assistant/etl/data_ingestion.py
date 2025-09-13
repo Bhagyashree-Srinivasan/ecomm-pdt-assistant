@@ -60,7 +60,7 @@ class DataIngestion:
         Load the CSV file into a DataFrame.
         """
         df = pd.read_csv(self.csv_path)
-        expected_columns = {"prodct_id", "product_title", "rating", "total_reviews", "price", "top_reviews"}
+        expected_columns = {"product_id", "product_title", "rating", "total_reviews", "price", "top_reviews"}
 
         if not expected_columns.issubset(set(df.columns)):
             raise ValueError(f"CSV must contain columns: {expected_columns}")

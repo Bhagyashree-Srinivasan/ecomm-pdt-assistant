@@ -11,7 +11,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 class FlipkartScrapper:
     def __init__(self, output_dir="data"):
         self.output_dir = output_dir
-        os.makedirs(self.output_dir, exists_ok=True)
+        os.makedirs(self.output_dir, exist_ok=True)
 
     def get_top_reviews(self, product_url, count=2):
         """
@@ -109,11 +109,11 @@ class FlipkartScrapper:
             path = filename
         elif os.path.dirname(filename):
             path = filename
-            os.makedirs(os.path.dirname(path), exists_ok = True)
+            os.makedirs(os.path.dirname(path), exist_ok = True)
         else:
             path = os.path.join(self.output_dir, filename)
 
         with open(path, "w", newline="", encoding="utf-8") as f:
             writer = csv.writer(f)
-            writer.writerow(["prodct_id", "product_title", "rating", "total_reviews", "price", "top_reviews"])
+            writer.writerow(["product_id", "product_title", "rating", "total_reviews", "price", "top_reviews"])
             writer.writerows(data)
