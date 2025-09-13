@@ -3,7 +3,20 @@ packages = [
     "langchain",
     "langchain_core",
     "python-dotenv",
-    "streamlit"
+    "streamlit",
+    "beautifulsoup4",
+    "fastapi",
+    "html5lib",
+    "jinja2",
+    "langchain-astradb",
+    "langchain-google-genai",
+    "langchain-groq",
+    "lxml",
+    "python-multipart",
+    "selenium",
+    "undetected-chromedriver",
+    "uvicorn",
+    "structlog"
 ]
 
 for package in packages:
