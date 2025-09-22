@@ -1,4 +1,5 @@
 import importlib.metadata
+import string
 packages = [
     "langchain",
     "langchain_core",
@@ -16,7 +17,8 @@ packages = [
     "selenium",
     "undetected-chromedriver",
     "uvicorn",
-    "structlog"
+    "structlog",
+    "langgraph"
 ]
 
 for package in packages:
