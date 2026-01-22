@@ -7,6 +7,8 @@ from dotenv import load_dotenv
 from utils.config_loader import load_config
 from utils.model_loader import ModelLoader
 
+from langchain.retrievers.document_compressors import LLMChainFilter
+from langchain.retrievers import ContextualCompressionRetriever
 
 class Retriever:
 
@@ -53,9 +55,21 @@ class Retriever:
             )
         if not self.retriever:
             top_k = self.config["retriever"]["top_k"] if "retreiver" in self.config else 3
-            retriever = self.vector_store.as_retriever(search_kwargs={"k": top_k})
+            mmr_retriever = self.vector_store.as_retriever(
+                search_type="mmr",
+                search_kwargs={"k": top_k,
+                               "fetch_k": 20,
+                               "lambda_mult": 0.5,
+                               "score_threshold": 0.3
+                               })
+            llm = self.model_loader.load_llm()
+            compressor = LLMChainFilter.from_llm(llm=llm)
+            self.retriever = ContextualCompressionRetriever(
+                base_retriever = mmr_retriever,
+                base_compressor = compressor
+            )
             print("Retriever loaded successfully.")
-            return retriever
+            return self.retriever
 
     def call_retriever(self, query):
         """

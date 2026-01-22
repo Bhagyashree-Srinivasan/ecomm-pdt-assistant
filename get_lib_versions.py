@@ -18,7 +18,8 @@ packages = [
     "undetected-chromedriver",
     "uvicorn",
     "structlog",
-    "langgraph"
+    "langgraph", 
+    "ragas"
 ]
 
 for package in packages:
